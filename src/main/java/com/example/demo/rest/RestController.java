@@ -2,6 +2,8 @@ package com.example.demo.rest;
 
 import com.example.demo.persist.BooksEntity;
 import com.example.demo.repo.BooksRepository;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,5 +36,13 @@ public class RestController {
         var addedBook = booksRepository.save(booksEntity);
         return addedBook;
     }
+    @EventListener(ApplicationReadyEvent.class)
+    public void fillDB(){
+        BooksEntity booksEntity = new BooksEntity(UUID.randomUUID(), "Król Lew", "WaltDisney", "Dla dzieci");
+        BooksEntity booksEntity1 = new BooksEntity(UUID.randomUUID(), "królewna śnieżka", "WaltDisney", "Dla młodzieży");
+        BooksEntity booksEntity2 = new BooksEntity(UUID.randomUUID(), "smerfy", "gsfsf", "dla bobasów");
+
+    }
+
 
 }

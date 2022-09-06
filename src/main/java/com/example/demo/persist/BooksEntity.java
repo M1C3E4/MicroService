@@ -11,6 +11,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+
 public class BooksEntity {
 
     @Id
@@ -19,4 +20,11 @@ public class BooksEntity {
     private String title;
     private String author;
     private String type;
+
+    public BooksEntity(UUID uuid, String title, String author, String type) {
+        this.uuid = uuid;
+        this.title = title;
+        this.author = author;
+        this.type = type;
+    }
 }
