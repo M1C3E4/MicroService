@@ -2,8 +2,7 @@ package com.example.demo.rest;
 
 import com.example.demo.persist.BooksEntity;
 import com.example.demo.repo.BooksRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,9 +24,15 @@ public class RestController {
     }
 
     @GetMapping("/byId")
-    public Optional<BooksEntity> pullBookById(UUID uuid){
+    public Optional<BooksEntity> pullBookById(@RequestParam UUID uuid){
         var book = booksRepository.findById(uuid);
         return book;
+    }
+
+    @PostMapping("/addBook")
+    public BooksEntity addBook (@RequestBody BooksEntity booksEntity){
+        var addedBook = booksRepository.save(booksEntity);
+        return addedBook;
     }
 
 }
