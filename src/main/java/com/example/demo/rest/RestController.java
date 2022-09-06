@@ -26,8 +26,8 @@ public class RestController {
     }
 
     @GetMapping("/byId/{id}")
-    public Optional<BooksEntity> pullBookById(@RequestParam UUID uuid){
-        var book = booksRepository.findById(uuid);
+    public Optional<BooksEntity> pullBookById(@PathVariable Long id){
+        var book = booksRepository.findById(id);
         return book;
     }
 
@@ -38,11 +38,11 @@ public class RestController {
     }
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
-        BooksEntity booksEntity = new BooksEntity(UUID.randomUUID(), "Król Lew", "WaltDisney", "Dla dzieci");
+        BooksEntity booksEntity = new BooksEntity(1l, "Król Lew", "WaltDisney", "Dla dzieci");
         saveBooks(booksEntity);
-        BooksEntity booksEntity1 = new BooksEntity(UUID.randomUUID(), "królewna śnieżka", "WaltDisney", "Dla młodzieży");
+        BooksEntity booksEntity1 = new BooksEntity(2l, "królewna śnieżka", "WaltDisney", "Dla młodzieży");
         saveBooks(booksEntity1);
-        BooksEntity booksEntity2 = new BooksEntity(UUID.randomUUID(), "smerfy", "gsfsf", "dla bobasów");
+        BooksEntity booksEntity2 = new BooksEntity(3l, "smerfy", "gsfsf", "dla bobasów");
         saveBooks(booksEntity2);
     }
 

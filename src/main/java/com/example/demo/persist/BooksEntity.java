@@ -17,13 +17,13 @@ public class BooksEntity {
 
     @Id
     @GeneratedValue
-    private UUID uuid;
+    private Long id;
     private String title;
     private String author;
     private String type;
 
-    public BooksEntity(UUID uuid, String title, String author, String type) {
-        this.uuid = uuid;
+    public BooksEntity(Long id, String title, String author, String type) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.type = type;
