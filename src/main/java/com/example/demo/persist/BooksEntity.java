@@ -27,4 +27,7 @@ public class BooksEntity {
         this.author = author;
         this.type = type;
     }
+
+    public BooksEntity() {
+    }
 }
