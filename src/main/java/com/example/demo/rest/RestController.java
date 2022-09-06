@@ -25,7 +25,7 @@ public class RestController {
         return listBooks;
     }
 
-    @GetMapping("/byId")
+    @GetMapping("/byId/{id}")
     public Optional<BooksEntity> pullBookById(@RequestParam UUID uuid){
         var book = booksRepository.findById(uuid);
         return book;
