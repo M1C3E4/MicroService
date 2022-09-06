@@ -39,9 +39,15 @@ public class RestController {
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
         BooksEntity booksEntity = new BooksEntity(UUID.randomUUID(), "Król Lew", "WaltDisney", "Dla dzieci");
+        saveBooks(booksEntity);
         BooksEntity booksEntity1 = new BooksEntity(UUID.randomUUID(), "królewna śnieżka", "WaltDisney", "Dla młodzieży");
+        saveBooks(booksEntity1);
         BooksEntity booksEntity2 = new BooksEntity(UUID.randomUUID(), "smerfy", "gsfsf", "dla bobasów");
+        saveBooks(booksEntity2);
+    }
 
+    private BooksEntity saveBooks(BooksEntity booksEntity){
+       return booksRepository.save(booksEntity);
     }
 
 
