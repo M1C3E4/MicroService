@@ -12,7 +12,6 @@ import javax.persistence.Id;
 @Setter
 @ToString
 public class BooksEntity {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -26,7 +25,6 @@ public class BooksEntity {
         this.author = author;
         this.type = type;
     }
-
     public BooksEntity() {
     }
 }
