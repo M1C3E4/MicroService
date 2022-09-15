@@ -34,10 +34,10 @@ public class RestController {
     }
 
     @PostMapping("/addBook")
-    public BooksEntity addBook (@RequestBody BooksEntity booksEntity){
-        var addedBook = booksRepository.save(booksEntity);
-        return addedBook;
+    public BooksEntity save(@RequestBody BooksEntity booksEntity){
+        return serviceBooks.add(booksEntity);
     }
+
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
         BooksEntity booksEntity = new BooksEntity(1l, "Król Lew", "WaltDisney", "Dla dzieci");
