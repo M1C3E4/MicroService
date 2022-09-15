@@ -28,24 +28,9 @@ public class RestController {
         return serviceBooks.findAll();
     }
 
-
-//    @GetMapping("/allBooks")
-//    public List<BooksEntity> pullAllBooks(){
-//        var listBooks = booksRepository.findAll();
-//        if(listBooks.isEmpty()){
-//            log.info("Baza danych jest pusta");
-//        }
-//            return listBooks;
-//    }
-
-
-    @GetMapping("/byId/{id}")
-    public Optional<BooksEntity> pullBookById(@PathVariable Long id){
-        var book = booksRepository.findById(id);
-        if(booksRepository.findById(id).isEmpty()){
-            log.info("W bazie danych nie ma rekordu o id =" + id);
-        }
-        return book;
+    @GetMapping("/findById/{id}")
+    public Optional<BooksEntity> pullBooksById(@PathVariable Long id){
+        return serviceBooks.findById(id);
     }
 
     @PostMapping("/addBook")

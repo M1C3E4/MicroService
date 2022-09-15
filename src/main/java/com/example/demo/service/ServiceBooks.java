@@ -24,5 +24,4 @@ public class ServiceBooks {
     public Optional<BooksEntity> findById(Long id){
         return booksRepository.findById(id);
     }
-
 }
