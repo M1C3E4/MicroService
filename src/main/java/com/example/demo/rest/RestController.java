@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +24,7 @@ public class RestController {
 
     @GetMapping("/findAllBooks")
     public List<BooksEntity> pullAllBooks(){
-        return serviceBooks.findAll();
+            return serviceBooks.findAll();
     }
 
     @GetMapping("/findById/{id}")
@@ -40,7 +39,7 @@ public class RestController {
 
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
-        BooksEntity booksEntity = new BooksEntity(1l, "Król Lew", "WaltDisney", "Dla dzieci");
+        BooksEntity booksEntity = new BooksEntity(1l, "Krol Lew", "WaltDisney", "Dla dzieci");
         saveBooks(booksEntity);
         BooksEntity booksEntity1 = new BooksEntity(2l, "królewna śnieżka", "WaltDisney", "Dla młodzieży");
         saveBooks(booksEntity1);
