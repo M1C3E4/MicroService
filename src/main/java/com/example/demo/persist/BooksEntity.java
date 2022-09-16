@@ -27,4 +27,8 @@ public class BooksEntity {
     }
     public BooksEntity() {
     }
+
+    public BooksEntity getBooksEntity (BooksEntity booksEntity){
+        return booksEntity;
+    }
 }
