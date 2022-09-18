@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.persist.BooksEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,11 +14,12 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class RestControllerTest {
+public class AcceptanceControllerTest {
 
     @Autowired
     public MockMvc mockMvc;
@@ -35,23 +35,30 @@ public class RestControllerTest {
                .contentType("application/json"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
+        BooksEntity expected = new BooksEntity(1L, "Krol Lew", "WaltDisney", "Dla dzieci");
         String jsonAsString = resultActions.andReturn().getResponse().getContentAsString();
         BooksEntity booksEntity = objectMapper.readValue(jsonAsString, BooksEntity.class);
-        assertEquals("Nie wiem co tu wstawić", booksEntity.getBooksEntity(booksEntity));
+        assertEquals(expected.getId(), booksEntity.getId());
+        assertEquals(expected.getTitle(), booksEntity.getTitle());
+        assertEquals(expected.getAuthor(), booksEntity.getAuthor());
+        assertEquals(expected.getType(), booksEntity.getType());
     }
 
     @Test
     @DisplayName("http://localhost:9090/findById/{id} -> 200")
     public void pullBooksByIdShouldReturnStatus200() throws Exception {
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/findById/1")
-                .contentType("application/json"))
+                .contentType("application/json")
+                .param("id", "1"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
+        BooksEntity expected = new BooksEntity(1L, "Krol Lew", "WaltDisney", "Dla dzieci");
         String jsonAsString = resultActions.andReturn().getResponse().getContentAsString();
         BooksEntity booksEntity = objectMapper.readValue(jsonAsString, BooksEntity.class);
-        assertEquals("Nie wiem co tu wstawić", booksEntity.getBooksEntity(booksEntity));
-
-
+        assertEquals(expected.getId(), booksEntity.getId());
+        assertEquals(expected.getTitle(), booksEntity.getTitle());
+        assertEquals(expected.getAuthor(), booksEntity.getAuthor());
+        assertEquals(expected.getType(), booksEntity.getType());
     }
 
 //    @Test
