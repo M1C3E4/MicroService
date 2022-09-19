@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.integrationTests;
 
 import com.example.demo.persist.BooksEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
