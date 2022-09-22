@@ -17,15 +17,15 @@ public class ServiceBooks {
         this.booksRepository = booksRepository;
     }
 
-    public List<BooksEntity> findAll(){
+    public List<BooksEntity> findAll() {
         return booksRepository.findAll();
     }
 
-    public Optional<BooksEntity> findById(Long id){
+    public Optional<BooksEntity> findById(Long id) {
         return booksRepository.findById(id);
     }
 
-    public BooksEntity add(BooksEntity booksEntity){
+    public BooksEntity add(BooksEntity booksEntity) {
         return booksRepository.save(booksEntity);
     }
 }
