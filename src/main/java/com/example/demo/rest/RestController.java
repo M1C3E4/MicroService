@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -23,32 +24,28 @@ public class RestController {
     }
 
     @GetMapping("/findAllBooks")
-    public List<BooksEntity> pullAllBooks(){
-            return serviceBooks.findAll();
+    public List<BooksEntity> pullAllBooks() {
+        return serviceBooks.findAll();
     }
 
     @GetMapping("/findById/{id}")
-    public Optional<BooksEntity> pullBooksById(@PathVariable Long id){
+    public Optional<BooksEntity> pullBooksById(@PathVariable Long id) {
         return serviceBooks.findById(id);
     }
 
     @PostMapping("/addBook")
-    public BooksEntity save(@RequestBody BooksEntity booksEntity){
+    public BooksEntity save(@RequestBody BooksEntity booksEntity) {
         return serviceBooks.add(booksEntity);
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    public void fillDB(){
+    public void fillDB() {
         BooksEntity booksEntity = new BooksEntity(1l, "Krol Lew", "WaltDisney", "Dla dzieci");
         saveBooks(booksEntity);
-//        BooksEntity booksEntity1 = new BooksEntity(2l, "królewna śnieżka", "WaltDisney", "Dla młodzieży");
-//        saveBooks(booksEntity1);
-//        BooksEntity booksEntity2 = new BooksEntity(3l, "smerfy", "gsfsf", "dla bobasów");
-//        saveBooks(booksEntity2);
     }
 
-    private BooksEntity saveBooks(BooksEntity booksEntity){
-       return booksRepository.save(booksEntity);
+    private BooksEntity saveBooks(BooksEntity booksEntity) {
+        return booksRepository.save(booksEntity);
     }
 
 

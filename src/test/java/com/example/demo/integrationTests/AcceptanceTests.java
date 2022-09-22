@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.integrationTests;
 
 import com.example.demo.persist.BooksEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AcceptanceControllerTest {
+public class AcceptanceTests {
 
     @Autowired
     public MockMvc mockMvc;
